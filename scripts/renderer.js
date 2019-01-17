@@ -2,7 +2,6 @@ var canvas = document.getElementById("canvas");
 var ctx = canvas.getContext("2d");
 
 export default function draw(offset) {
-    console.log('In draw');
     ctx.canvas.width  = window.innerWidth;
     ctx.canvas.height = window.innerHeight;
     ctx.beginPath();

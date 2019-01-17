@@ -1,4 +1,3 @@
-console.log('Start');
 import processInput from './controller.js';
 import gameStep from './updater.js';
 import draw from './renderer.js';
@@ -16,14 +15,12 @@ function update(current) {
     lag += elapsed;
 
     processInput();
-    console.log('After input');
     while(lag >= MS_PER_UPDATE) {
         gameStep(MS_PER_UPDATE);
         lag -= MS_PER_UPDATE;
     }
-    console.log('After loop');
     draw(lag/MS_PER_UPDATE);
+    window.requestAnimationFrame(update) 
 }
 
-console.log('Requesting');
 window.requestAnimationFrame(update) 
