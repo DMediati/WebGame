@@ -1,10 +1,10 @@
-import processInput from './controller.js';
-import gameStep from './updater.js';
-import draw from './renderer.js';
+import Engine from './engine.js';
+import renderer from './renderer.js';
 
 const MS_PER_UPDATE = 10;
 var prev = null;
 var lag = 0;
+var engine = new Engine();
 
 function update(current) {
     if(!prev) {
@@ -14,12 +14,13 @@ function update(current) {
     prev = current;
     lag += elapsed;
 
-    processInput();
+    engine.preLogicUpdate(elapsed);
     while(lag >= MS_PER_UPDATE) {
-        gameStep(MS_PER_UPDATE);
+        engine.logicUpdate(MS_PER_UPDATE);
         lag -= MS_PER_UPDATE;
     }
-    draw(lag/MS_PER_UPDATE);
+    engine.postLogicUpdate(lag/MS_PER_UPDATE);
+    renderer.draw(lag/MS_PER_UPDATE);
     window.requestAnimationFrame(update) 
 }
 

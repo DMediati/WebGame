@@ -1,28 +1,38 @@
-var pressed={};
-document.onkeydown=function(e){
-     e = e || window.event;
-     pressed[e.keyCode] = true;
-}
+export default class Controller {
+    constructor(player) {
+        this.pressed = {};
+        document.onkeydown = (evt)=> {
+            this.pressed[evt.code] = true;
+        }
 
-document.onkeyup=function(e){
-     e = e || window.event;
-     delete pressed[e.keyCode];
-}
+        document.onkeyup = (evt)=> {
+            delete this.pressed[evt.code];
+        }
 
-export default function processInput() {
-    if(pressed[87]) {
-        console.log("W");
+        this.player = player;
     }
 
-    if(pressed[65]) {
-        console.log("A");
+    isKeyDown(code) {
+        return this.pressed[code];
     }
 
-    if(pressed[83]) {
-        console.log("S");
-    }
+    inputUpdate() {
+        this.player.moveStop();
 
-    if(pressed[68]) {
-        console.log("D");
+        if(this.isKeyDown("KeyW")) { 
+            this.player.moveUp();
+        }
+
+        if(this.isKeyDown("KeyA")) { 
+            this.player.moveLeft();
+        }
+
+        if(this.isKeyDown("KeyS")) { 
+            this.player.moveDown();
+        }
+
+        if(this.isKeyDown("KeyD")) { 
+            this.player.moveRight();
+        }
     }
 }
