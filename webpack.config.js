@@ -11,5 +11,18 @@ module.exports = {
         contentBase: path.join(__dirname, 'html'),
         compress: true,
         port: 3000
+    },
+    module: {
+        rules: [
+            {
+                test: /\.(png|jpg|gif)$/,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {},
+                    },
+                ],
+            },
+        ],
     }
 };

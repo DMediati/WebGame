@@ -9,12 +9,13 @@ export default class Engine {
 
     //Elapsed is the actual time since last update
     preLogicUpdate(elapsed) {
-        this.controller.inputUpdate();
+        
     }
 
     //Step is the set time to update logic
     logicUpdate(step) {
-
+        this.controller.inputUpdate();
+        this.player.update();
     }
 
     //Offset is the lag compensation after updating

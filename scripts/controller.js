@@ -23,12 +23,12 @@ export default class Controller {
             this.player.moveUp();
         }
 
-        if(this.isKeyDown("KeyA")) { 
-            this.player.moveLeft();
-        }
-
         if(this.isKeyDown("KeyS")) { 
             this.player.moveDown();
+        }
+
+        if(this.isKeyDown("KeyA")) { 
+            this.player.moveLeft();
         }
 
         if(this.isKeyDown("KeyD")) { 
