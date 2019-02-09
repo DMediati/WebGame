@@ -7,6 +7,7 @@ class Renderer {
             this.canvas.width = window.innerWidth;
             this.canvas.height = window.innerHeight;
             document.body.appendChild(this.canvas);
+
             this.ctx = this.canvas.getContext("2d");
 
             this.renderables = [];
@@ -14,6 +15,19 @@ class Renderer {
         }
 
         return Renderer.instance;
+    }
+
+    resizeCanvas() {
+        this.canvas.width = window.innerWidth;
+        this.canvas.height = window.innerHeight;
+    }
+
+    getCanvasWidth() {
+        return this.canvas.width;
+    }
+
+    getCanvasHeight() {
+        return this.canvas.height;
     }
 
     addRenderable(renderable) {
